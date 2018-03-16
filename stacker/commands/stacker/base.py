@@ -4,7 +4,7 @@ import signal
 from collections import Mapping
 import logging
 
-from ...environment import parse_environment
+from ...util import yaml_to_ordered_dict
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ def key_value_arg(string):
 def environment_file(input_file):
     """Reads a stacker environment file and returns the resulting data."""
     with open(input_file) as fd:
-        return parse_environment(fd.read())
+        return yaml_to_ordered_dict(fd.read())
 
 
 class BaseCommand(object):
